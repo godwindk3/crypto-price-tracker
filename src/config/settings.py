@@ -3,5 +3,5 @@ import os
 
 API_URL = "https://api.coingecko.com/api/v3/simple/price"
 GECKO_API_KEY = os.getenv("GECKO_API_KEY")
-DEFAULT_COINT = ["bitcoin", "ethereum"]
+DEFAULT_COIN = ["bitcoin", "ethereum"]
 DEFAUT_CURRENCIES = ["usd"]

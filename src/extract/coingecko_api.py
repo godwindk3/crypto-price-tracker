@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 import time
 import json
-from src.config.settings import API_URL, GECKO_API_KEY, DEFAULT_COINT, DEFAUT_CURRENCIES
+from src.config.settings import API_URL, GECKO_API_KEY, DEFAULT_COIN, DEFAUT_CURRENCIES
 
 
 def fetch_prices(coins, currencies, api_url=API_URL, api_key=GECKO_API_KEY, max_retries=3):
@@ -58,10 +58,47 @@ def fetch_prices(coins, currencies, api_url=API_URL, api_key=GECKO_API_KEY, max_
     return None
 
 
-print(fetch_prices(DEFAULT_COINT, DEFAUT_CURRENCIES))
+# print(fetch_prices(DEFAULT_COIN, DEFAUT_CURRENCIES))
 
 def save_raw_data(data):
-    print("test")
+    current_dir = os.path.dirname(__file__)
+    
+    raw_dir = os.path.abspath(os.path.join(current_dir, "../../data/raw"))
+
+    os.makedirs(raw_dir, exist_ok=True)
+
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"crypto_prices_{timestamp}.json"
+    file_path = os.path.join(raw_dir, filename)
+
+    try:
+        with open(file_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+        print(f"Data saved to: {file_path}")
+    except Exception as e:
+        print(f"Failed to save raw data: {e}")
+
 
 def run_extract():
-    print("test")    
+    coins = DEFAULT_COIN
+    currencies = DEFAUT_CURRENCIES
+    num_calls = 3
+    delay = 5
+
+    print(f"Starting extraction test at {datetime.now().isoformat()}")
+
+    for i in range(num_calls):
+        print(f"\n--- Fetching batch {i+1}/{num_calls} ---")
+        data = fetch_prices(coins, currencies)
+
+        if data:
+            save_raw_data(data)
+        else:
+            print("No data fetched this round.")
+        
+        time.sleep(delay)
+    
+    print("Extraction test completed")
+
+run_extract()
+        
