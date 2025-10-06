@@ -2,6 +2,8 @@ from dotenv import load_dotenv
 import os
 import requests
 
+load_dotenv()
+
 gecko_api_key = os.getenv("GECKO_API_KEY")
 
 url = "https://api.coingecko.com/api/v3/simple/price"
