@@ -60,5 +60,8 @@ def fetch_prices(coins, currencies, api_url=API_URL, api_key=GECKO_API_KEY, max_
 
 print(fetch_prices(DEFAULT_COINT, DEFAUT_CURRENCIES))
 
-    
-    
+def save_raw_data(data):
+    print("test")
+
+def run_extract():
+    print("test")    
