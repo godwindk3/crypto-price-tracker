@@ -97,8 +97,8 @@ def run_extract():
             print("No data fetched this round.")
         
         time.sleep(delay)
-    
+     
     print("Extraction test completed")
 
-run_extract()
+
         
