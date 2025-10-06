@@ -1,4 +1,4 @@
-# Crypto Price Tracker
+# Crypto Price Tracker Using Gecko freetier API
 
 ## Setup
 1. Copy .env.example -> .env,  GECKO_API_KEY=your_shit
